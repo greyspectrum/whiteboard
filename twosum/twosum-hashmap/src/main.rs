@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn two_sum(nums: &[i32], target: i32) -> (usize, usize) {
+pub fn two_sum(nums: Vec<i32>, target: i32) -> (usize, usize) {
     let mut map = HashMap::new();
 
     for (i, x) in nums.iter().enumerate() {
@@ -14,6 +14,10 @@ pub fn two_sum(nums: &[i32], target: i32) -> (usize, usize) {
 }
 
 fn main() {
-    let ret = two_sum(&vec![2, 7, 11, 15], 9);
+    let nums = vec![2, 7, 11, 15];
+
+    let target: i32 = 9;
+
+    let ret = two_sum(nums, target);
     println!("{}, {}", ret.0, ret.1);
 }
