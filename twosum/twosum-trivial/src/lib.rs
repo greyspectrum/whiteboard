@@ -1,3 +1,7 @@
+#![feature(test)]
+
+extern crate test;
+
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut solution: Vec<i32> = Vec::new();
 
@@ -21,12 +25,22 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     return solution;
 }
 
-fn main() {
-    let nums = vec![2, 7, 11, 15];
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use test::Bencher;
 
-    let target: i32 = 9;
+    #[test]
+    fn it_works() {
+        let nums: Vec<i32> = vec![2, 7, 11, 15];
+        let target: i32 = 9;
+        assert_eq!(vec![0, 1], two_sum(nums, target));
+    }
 
-    let print_solution = two_sum(nums, target);
-
-    println!("The solution is: {:?}", print_solution);
+    #[bench]
+    fn bench_two_sum(b: &mut Bencher) {
+        let nums: Vec<i32> = vec![2, 7, 11, 15];
+        let target: i32 = 9;
+        b.iter(|| two_sum(nums.clone(), target));
+    }
 }
