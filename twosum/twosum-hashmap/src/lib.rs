@@ -19,11 +19,16 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     return solution;
 }
 
-fn main() {
-    let nums = vec![10, 5, 6];
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    let target: i32 = 15;
+    #[test]
+    fn it_works() {
+        let nums = vec![10, 5, 6];
 
-    let ret = two_sum(nums, target);
-    println!("{:?}", ret);
+        let target: i32 = 15;
+
+        assert_eq!(vec![0, 1], two_sum(nums,target));
+    }
 }
